@@ -1,11 +1,16 @@
 #include "BlockNote.h"
 #include <qfiledialog.h>
 #include <qmessagebox.h>
+#include <QFontDialog>
 
 BlockNote::BlockNote(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
+
+    connect(ui.actionNew, &QAction::triggered, this, &BlockNote::setItalic);
+    connect(ui.actionNew, &QAction::triggered, this, &BlockNote::setBold);
+    connect(ui.actionNew, &QAction::triggered, this, &BlockNote::setUnderline);
 }
 
 BlockNote::~BlockNote()
@@ -70,6 +75,32 @@ void BlockNote::on_actionSave_as_triggered() {
 
 void BlockNote::on_actionExit_triggered() {
     this->close();
+}
+
+/* Edit File */
+
+void BlockNote::on_actionColor_triggered() {
+    
+}
+
+void BlockNote::on_actionFont_triggered() {
+    bool fontSelected;
+    QFont changeFont = QFontDialog::getFont(&fontSelected, this);
+    if (fontSelected) {
+        ui.textEdit->setFont(changeFont);
+    }
+}
+
+void BlockNote::setItalic(bool italic) {
+    ui.textEdit->setFontItalic(italic);
+}
+
+void BlockNote::setBold(bool bold) {
+    ui.textEdit->setFontBold(bold);
+}
+
+void BlockNote::setUnderline(bool underline) {
+    ui.textEdit->setFontUnderline(underline);
 }
 
 void BlockNote::on_actionCopy_triggered() {

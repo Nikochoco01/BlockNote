@@ -28,6 +28,9 @@ private slots:
 
     void on_actionColor_triggered();
     void on_actionFont_triggered();
+    void setItalic(bool);
+    void setBold(bool);
+    void setUnderline(bool);
 
     void on_actionCopy_triggered();
     void on_actionCut_triggered();
